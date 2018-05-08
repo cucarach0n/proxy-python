@@ -17,7 +17,7 @@ import traceback
 
 if sys.argv[2:]:
     mensaje = sys.argv[2]
-    mensaje = '<font color="red">CONECTADO : </font> <font color="blue">' + msg1 + '</font>'
+    mensaje = '<font color="red">CONECTADO : </font> <font color="blue">' + mensaje + '</font>'
 else:
     mensaje = '<font color="red">CONECTADO : </font> <font color="blue">Cucaracha Proxy V1</font>'
 
