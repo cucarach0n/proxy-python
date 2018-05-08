@@ -15,6 +15,14 @@ import re
 import traceback
 
 
+if sys.argv[2:]:
+    mensaje = sys.argv[2]
+    mensaje = '<font color="red">CONECTADO : </font> <font color="blue">' + msg1 + '</font>'
+else:
+    mensaje = '<font color="red">CONECTADO : </font> <font color="blue">Cucaracha Proxy V1</font>'
+
+
+
 class ThreadingHTTPServer(ThreadingMixIn, HTTPServer):
 
     address_family = socket.AF_INET
@@ -26,7 +34,6 @@ class ThreadingHTTPServer(ThreadingMixIn, HTTPServer):
         traceback.print_exc()
         print >>sys.stderr, '-'*40
         
-     
 class ThreadingHTTPServer6(ThreadingHTTPServer):
 
     address_family = socket.AF_INET6
@@ -61,7 +68,7 @@ class SimpleHTTPProxyHandler(BaseHTTPRequestHandler):
             conn = socket.create_connection(address)
         except socket.error:
             return
-        self.send_response(200, '<font color="red">PROXY SOCKS</font> <font color="blue">Cucaracha Porxy :v</font>')
+        self.send_response(200, mensaje)
         self.send_header('Connection', 'close')
         self.end_headers()
 
@@ -295,10 +302,10 @@ class SimpleHTTPProxyHandler(BaseHTTPRequestHandler):
 
 def test(HandlerClass=SimpleHTTPProxyHandler, ServerClass=ThreadingHTTPServer, protocol="HTTP/1.1"):
     if sys.argv[1:]:
-        port = int(sys.argv[1])
+        puerto = int(sys.argv[1])
     else:
-        port = 53·µ
-    server_address = ('', port)
+        puerto = 3128
+    server_address = ('', puerto)
 
     HandlerClass.protocol_version = protocol
     httpd = ServerClass(server_address, HandlerClass)
