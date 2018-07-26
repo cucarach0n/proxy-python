@@ -302,7 +302,7 @@ class SimpleHTTPProxyHandler(BaseHTTPRequestHandler):
 
 def test(HandlerClass=SimpleHTTPProxyHandler, ServerClass=ThreadingHTTPServer, protocol="HTTP/1.1"):
     if sys.argv[1:]:
-        puerto = float(sys.argv[1])
+        puerto = int(sys.argv[1])
     else:
         puerto = 3128
     server_address = ('', puerto)
